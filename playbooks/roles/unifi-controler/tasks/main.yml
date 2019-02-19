@@ -1,0 +1,33 @@
+---
+- docker-service:
+    project_name: unifi
+    defenition:
+      version: '2'
+        services:
+         unifi-controller:
+           container_name: unifi.controller-latest
+           image: jacobalberty/unifi:latest
+           restart: always
+           volumes:
+             - 'unifi_run:/var/run/unifi'
+             - 'unifi_root:/unifi'
+           ports:     
+             - '443:8443/tcp'
+             - '8080:8080/tcp'
+             - '8880:8880/tcp'
+             - '8843:8843/tcp'
+             - '6789:6789/tcp'
+             - '27117:27117/tcp'     
+             - '5656-5699:5656-5699/udp'
+             - '10001:10001/udp'
+             - '3478:3478/udp'
+             - '1900:1900/udp'     
+           environment:
+             - TZ=Europe/Kiev
+           labels:
+             - 'unifi-controller'
+        networks:
+          default:
+            external:
+              name: "{{intranet_iface}}"
+    state: present

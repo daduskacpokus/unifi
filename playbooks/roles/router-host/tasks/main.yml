@@ -1,0 +1,32 @@
+---
+- copy: src={{netplan_config}} dest=/etc/netplan/
+- lineinfile:
+    path: /etc/netplan/09-intranet.yaml
+    regexp: INTRANET
+    line: "    {{intranet_iface}}:"
+    state: present
+- shell: netplan apply
+- sysctl: name="net.ipv4.ip_forward" value=1 state=present sysctl_set=yes reload=yes
+- iptables:
+    table: nat
+    chain: POSTROUTING
+    out_interface: "{{internet_iface}}"
+    jump: MASQUERADE
+- iptables:
+    chain: FORWARD
+    in_interface: "{{internet_iface}}"
+    out_interface: "{{intranet_iface}}"
+    ctstate:
+      - RELATED
+      - ESTABLISHED
+    jump: ACCEPT
+- iptables:
+    chain: FORWARD
+    in_interface: "{{intranet_iface}}"
+    out_interface: "{{internet_iface}}"
+    jump: ACCEPT
+- iptables:
+    chain: FORWARD
+    destination: "10.0.0.0/8"
+    jump: DROP
+    comment: "Private network firewall"

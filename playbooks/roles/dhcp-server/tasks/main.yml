@@ -1,0 +1,24 @@
+---
+- file: path={{docker_files}} state=directory
+- copy: src={{server_conf}} dest={{docker_files}}
+- docker_service:
+    project_name: dhcpd
+    definition:
+      version: "2"
+        services:
+          isc:
+            image: sirferdek/isc-dhcp-server
+            volumes:
+             - "{{docker_files}}/dhcpd.conf:/etc/dhcp/dhcpd.conf"
+            networks:
+              macvlan:
+                ipv4_address: {{server_address}}
+        networks:
+          macvlan:
+            driver: macvlan
+            driver_opts:
+              parent: {{intranet_iface}}
+            ipam:
+              config:
+              - subnet: {{intranet_mask}}
+    state: present

@@ -1,0 +1,8 @@
+---
+- hosts: unifi0
+  become: yes
+  roles:
+    - router-host
+    - docker-host
+    - dhcp-server
+    - unifi-controler

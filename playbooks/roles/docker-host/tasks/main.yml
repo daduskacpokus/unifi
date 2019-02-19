@@ -1,0 +1,6 @@
+---
+- package: name={{item}} state=latest update_cache=yes
+  with_items:
+    - docker.io
+    - docker-compose
+    
