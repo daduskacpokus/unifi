@@ -1,6 +1,0 @@
----
-intranet_iface: "enp4s0f1"
-intranet_mask: "192.168.1.0/24"
-server_address: "192.168.1.2"
-server_conf: "{{role_path}}/files/dhcpd.conf"
-docker_files: "/opt/docker/"

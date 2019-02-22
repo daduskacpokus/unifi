@@ -1,3 +1,0 @@
----
-intranet_iface: "enp4s0f1"
-docker_volume: "/var/lib/docker/volumes"

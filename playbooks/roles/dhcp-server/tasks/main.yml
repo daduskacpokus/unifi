@@ -12,13 +12,13 @@
            - "{{docker_files}}/dhcpd.conf:/etc/dhcp/dhcpd.conf"
           networks:
             macvlan:
-              ipv4_address: {{server_address}}
+              ipv4_address: "{{server_address}}"
       networks:
         macvlan:
           driver: macvlan
           driver_opts:
-            parent: {{intranet_iface}}
+            parent: "{{intranet_iface}}"
           ipam:
             config:
-            - subnet: {{intranet_mask}}
+            - subnet: "{{intranet_mask}}"
     state: present

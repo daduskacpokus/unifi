@@ -1,4 +1,0 @@
----
-netplan_config: "{{role_path}}/files/09-intranet.yaml"
-internet_iface: "enp4s0f0"
-intranet_iface: "enp4s0f1"
