@@ -9,7 +9,7 @@
 ### Как делаем?
 
 Все тарелки *Ubiquiti* расположенные по офису соединяются с контроллером через один широковещательный домен L2 
-![Image of L2 switch]()
+![Image of L2 switch](https://github.com/daduskacpokus/unifi/blob/master/img/1551786772429.JPEG)
 ### Для чего?
 
 ### Что получаем?
