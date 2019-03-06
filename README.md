@@ -13,6 +13,7 @@
   ![Image of L2 switch](https://github.com/daduskacpokus/unifi/blob/master/img/1551786772429.JPEG)
 
 - контроллер имеет два порта **GigabitEthernet** один из которых *смотрит* в сторону домена c тарелками `intranet_iface`, а другой в интернет `internet_iface`. Хост-система контроллера работает в режиме маршрутизатора пересылая пакеты из домена тарелок (пользователей wifi) в сеть интернет.
+- В случае, если `internet_iface` для выхода в интернет использует корпоративную сеть, а не выделеный канал - пакеты из сети wifi в частную сеть не пропускает [файрвол](https://github.com/daduskacpokus/unifi/blob/master/playbooks/roles/router-host/tasks/main.yml)
 
 ### Для чего?
 
