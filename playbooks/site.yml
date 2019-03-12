@@ -1,11 +1,12 @@
 ---
-- hosts: unifi0
+- hosts: localhost
   become: yes
   vars:
-    - netplan_config: "{{role_path}}/files/09-intranet.yaml"
-    - internet_iface: "enp4s0f0"
-    # - intranet_iface: "enp4s0f1"
-    - intranet_iface: "dummy0"
+    - netplan_08: "{{role_path}}/files/08-internet.yaml"
+    - netplan_09: "{{role_path}}/files/09-intranet.yaml"
+    - internet_iface: "enp2s0"
+    - intranet_iface: "enp4s0"
+    #- intranet_iface: "dummy0"
     - intranet_mask: "192.168.1.0/24"
     - server_address: "192.168.1.2"
     - server_conf: "{{role_path}}/files/dhcpd.conf"

@@ -26,13 +26,13 @@
             - TZ=Europe/Kiev
           labels:
             - 'unifi-controller'
-      # networks:
-      #   default:
-      #     external:
-      #       name: "{{intranet_iface}}"
       networks:
-        macvlan:
-          driver: macvlan
-          driver_opts:
-            parent: "{{intranet_iface}}"
+        default:
+          external:
+            name: "{{intranet_iface}}"
+            #networks:
+            #macvlan:
+            #driver: macvlan
+            #driver_opts:
+            #parent: "{{intranet_iface}}"
     state: present
