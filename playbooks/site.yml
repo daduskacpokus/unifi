@@ -1,5 +1,6 @@
 ---
-- become: yes
+- host: localhost
+  become: yes
   vars:
     - internet_iface: "eth0"
     - intranet_iface: "ppp0"
