@@ -56,8 +56,8 @@
     - { dest: "/var/run/xl2tpd", state: directory }
     - { dest: "/var/run/xl2tpd/l2tp-control", state: touch }
 
-- shell: systemctl daemon-reload
-- shell: systemctl restart strongswan
-- shell: systemctl restart xl2tpd  
-- shell: systemctl enable --now l2tp@myvpn 
+- shell: sudo systemctl daemon-reload
+- shell: sudo systemctl restart strongswan
+- shell: sudo systemctl restart xl2tpd  
+- shell: sudo systemctl enable --now l2tp@myvpn 
   

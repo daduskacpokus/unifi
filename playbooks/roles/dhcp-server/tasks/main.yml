@@ -1,6 +1,4 @@
 ---
-- file: path={{docker_files}} state=directory
-- copy: src={{server_conf}} dest={{docker_files}}
 - docker_service:
     project_name: dhcpd
     definition:
