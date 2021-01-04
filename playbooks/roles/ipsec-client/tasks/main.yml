@@ -51,13 +51,11 @@
     - { src: "/etc/ipsec.conf", dest: "/etc/strongswan/ipsec.conf" }
     - { src: "/etc/ipsec.secrets", dest: "/etc/strongswan/ipsec.secrets"  }
 
-- file: dest={{item.dest}} state={{item.state}}
-  loop:
-    - { dest: "/var/run/xl2tpd", state: directory }
-    - { dest: "/var/run/xl2tpd/l2tp-control", state: touch }
+- shell: sudo mkdir -p /var/run/xl2tpd
+- shell: sudo touch /var/run/xl2tpd/l2tp-control
+- shell: sudo service strongswan restart
+- shell: sudo service xl2tpd restart
+- shell: sudo strongswan up myvpn
+- shell: sudo su && echo "c myvpn" > /var/run/xl2tpd/l2tp-control
 
-- shell: sudo systemctl daemon-reload
-- shell: sudo systemctl restart strongswan
-- shell: sudo systemctl restart xl2tpd  
-- shell: sudo systemctl enable --now l2tp@myvpn 
   
