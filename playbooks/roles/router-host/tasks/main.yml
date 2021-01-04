@@ -20,7 +20,4 @@
     in_interface: "{{intranet_iface}}"
     out_interface: "{{internet_iface}}"
     jump: ACCEPT
-- net_static_route:
-    prefix: "{{remote_peer_prefix}}"
-    mask: "{{remote_peer_netmask}}"
-    next_hop: "{{remote_peer_ip}}"
+- shell: ip route add "{{remote_peer_prefix}}/{{remote_peer_netmask}}" via "{{remote_peer_ip}}"
