@@ -1,18 +1,18 @@
 ---
-- hosts: localhost
-  become: yes
+- become: yes
   vars:
-    - netplan_08: "{{role_path}}/files/08-internet.yaml"
-    - netplan_09: "{{role_path}}/files/09-intranet.yaml"
-    - internet_iface: "enp2s0"
-    - intranet_iface: "enp4s0"
-    #- intranet_iface: "dummy0"
-    - intranet_mask: "192.168.1.0/24"
-    - server_address: "192.168.1.2"
-    - server_conf: "{{role_path}}/files/dhcpd.conf"
-    - docker_files: "/opt/docker/"
-    - docker_volume: "/var/lib/docker/volumes"
+    - internet_iface: "eth0"
+    - intranet_iface: "ppp0"
+    - intranet_mask: "172.31.32.0/20"
+    - controller_address: "172.31.33.1"
+    - controllerdb_address: "172.31.33.3"
+    - dhcp_address: "172.31.33.2"
+    - dhcp_conf: "{{role_path}}/files/dhcpd.conf"
+    - remote_peer_ip: "10.255.255.0"
+    - remote_peer_prefix: "192.168.1.0"
+    - remote_peer_netmask: "255.255.255.0"
   roles:
+    - ipsec-client
     - router-host
     - docker-host
     - dhcp-server

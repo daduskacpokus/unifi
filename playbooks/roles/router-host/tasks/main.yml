@@ -1,13 +1,4 @@
 ---
-- copy: src={{item}} dest=/etc/netplan/
-  with_items:
-    - "{{netplan_08}}"
-    - "{{netplan_09}}"
-- lineinfile: path={{item.path}} regexp={{item.regexp}} line={{item.line}} state=present
-  with_items:
-    - { path: "/etc/netplan/08-internet.yaml", regexp: "INTERNET", line: "    {{internet_iface}}:"}
-    - { path: "/etc/netplan/09-intranet.yaml", regexp: "INTRANET", line: "    {{intranet_iface}}:"}
-- shell: netplan apply
 - sysctl: name="net.ipv4.ip_forward" value=1 state=present sysctl_set=yes reload=yes
 - iptables:
     table: nat
@@ -27,10 +18,7 @@
     in_interface: "{{intranet_iface}}"
     out_interface: "{{internet_iface}}"
     jump: ACCEPT
-- iptables:
-    chain: FORWARD
-    action: insert
-    rule_num: 1
-    destination: "10.0.0.0/8"
-    jump: DROP
-    comment: "Private network firewall"
+- net_static_route:
+    prefix: "{{remote_peer_prefix}}"
+    mask: "{{remote_peer_netmask}}"
+    next_hop: "{{remote_peer_ip}}"

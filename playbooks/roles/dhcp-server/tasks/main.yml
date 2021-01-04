@@ -4,17 +4,18 @@
 - docker_service:
     project_name: dhcpd
     definition:
-      version: "2"
+      version: "3.3"
       services:
         isc:
           image: sirferdek/isc-dhcp-server
           volumes:
-           - "{{docker_files}}/dhcpd.conf:/etc/dhcp/dhcpd.conf"
+           - "{{dhcp_conf}}:/etc/dhcp/dhcpd.conf"
           networks:
             macvlan:
-              ipv4_address: "{{server_address}}"
+              ipv4_address: "{{dhcp_address}}"
       networks:
-        macvlan:
+        macvlan:        
+          attachable: true
           driver: macvlan
           driver_opts:
             parent: "{{intranet_iface}}"

@@ -1,0 +1,16 @@
+[Unit]
+Description=L2TP client connection to "%i"
+Documentation=https://help.ui.com/hc/en-us/articles/204950294-EdgeRouter-L2TP-IPsec-VPN-Server#1
+Documentation=https://howto.lintel.in/configure-ipsecl2tp-vpn-clients-linux-cli/
+Wants=syslog.target
+Requires=network.target
+After=network-online.target
+[Service]
+EnvironmentFile=/etc/environment
+ExecStart=/usr/sbin/strongswan up "%i"
+ExecStartPost=/bin/sleep 10
+ExecStartPost=/bin/echo \"c "%i"\" > /var/run/xl2tpd/l2tp-control
+ExecStop=/usr/sbin/strongswan down "%i"
+[Install]
+WantedBy=strongswan.service
+WantedBy=xl2tpd.service
