@@ -8,7 +8,6 @@ After=network-online.target
 [Service]
 EnvironmentFile=/etc/environment
 ExecStart=/usr/sbin/strongswan up "%i"
-ExecStartPost=/bin/sleep 10
 ExecStartPost=/bin/echo \"c "%i"\" > /var/run/xl2tpd/l2tp-control
 ExecStop=/usr/sbin/strongswan down "%i"
 [Install]
