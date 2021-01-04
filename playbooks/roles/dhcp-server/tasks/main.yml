@@ -18,8 +18,8 @@
           attachable: true
           driver: macvlan
           driver_opts:
-            parent: "{{intranet_iface}}"
+            parent: "{{internet_iface}}"
           ipam:
             config:
-            - subnet: "{{intranet_mask}}"
+            - subnet: "{{internet_mask}}"
     state: present

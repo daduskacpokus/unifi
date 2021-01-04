@@ -4,7 +4,7 @@
   vars:
     - internet_iface: "eth0"
     - intranet_iface: "ppp0"
-    - intranet_mask: "172.31.32.0/20"
+    - internet_mask: "172.31.32.0/20"
     - controller_address: "172.31.33.1"
     - controllerdb_address: "172.31.33.3"
     - dhcp_address: "172.31.33.2"
@@ -14,7 +14,7 @@
     - remote_peer_netmask: "24"
   roles:
     - ipsec-client
-    - router-host
+    # - router-host
     - docker-host
     - dhcp-server
     - unifi-controler
