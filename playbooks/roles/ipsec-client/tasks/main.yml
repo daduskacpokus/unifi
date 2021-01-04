@@ -31,7 +31,7 @@
     - xl2tpd
 
 - name: Delete default config files
-  file: src={{item}} state=absent
+  file: path={{item}} state=absent
   loop:
     - /etc/strongswan/ipsec.conf
     - /etc/strongswan/ipsec.secrets
