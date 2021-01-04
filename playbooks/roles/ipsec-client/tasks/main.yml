@@ -15,11 +15,11 @@
     - amazon-linux-extras
 
 - name: Add extras repository
-  command: /bin/sh -c {{item}}
-  loop:
-    - sudo amazon-linux-extras install epel -y
-    - sudo yum-config-manager --enable epel
+  shell: sudo amazon-linux-extras install epel -y
 
+- name: Enable this repository 
+  shell: sudo yum-config-manager --enable epel
+  
 - name: Ensure a list of yum packages are installed
   yum:
     name: "{{ packages }}"
