@@ -15,7 +15,7 @@
     - amazon-linux-extras
 
 - name: Add extras repository
-  shell: {{item}}
+  command: /bin/sh -c {{item}}
   loop:
     - sudo amazon-linux-extras install epel -y
     - sudo yum-config-manager --enable epel
