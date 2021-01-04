@@ -67,8 +67,8 @@
     - { path: "/etc/ppp/options.l2tpd.client", line: "password {{VPN_PASSWORD}}", regexp: "password VPN_PASSWORD" }
 
 - name: Restart services
-  systemd: name={{item.name}} state={{item.state}} daemon_reload=yes enabled=true
+  systemd: name={{item.name}} state=restarted daemon_reload=yes enabled=true
   loop:
-    - { name: "strongswan", state: "restarted" }
-    - { name: "xl2tpd", state: "restarted" }
-    - { name: "l2tp@myvpn", state: "started" }
+    - strongswan
+    - xl2tpd
+    - l2tp@myvpn
