@@ -1,4 +1,6 @@
 ---
+- yum: name=NetworkManager state=present
+- systemd: name=NetworkManager state=started enable=yes
 - sysctl: name="net.ipv4.ip_forward" value=1 state=present sysctl_set=yes reload=yes
 - iptables:
     table: nat
