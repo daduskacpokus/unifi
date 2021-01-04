@@ -12,13 +12,13 @@
     update_cache: yes
   vars:
     packages:
-    - epel-release
+    - amazon-linux-extras
 
-
-- name: Enable EPEL Repository
-  yum:
-    name: epel-release
-    state: latest
+- name: Add extras repository
+  shell: {{item}}
+  loop:
+    - sudo amazon-linux-extras install epel -y
+    - sudo yum-config-manager --enable epel
 
 - name: Ensure a list of yum packages are installed
   yum:
